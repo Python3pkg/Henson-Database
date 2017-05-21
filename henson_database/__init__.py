@@ -50,7 +50,7 @@ def from_settings(settings):
     """
     return {
         k.replace('DATABASE_', '', 1).lower(): v
-        for k, v in settings.items()
+        for k, v in list(settings.items())
         if k.startswith('DATABASE_')}
 
 
@@ -64,7 +64,7 @@ def to_settings(settings):
     Returns:
         dict: Application-level settings.
     """
-    return {'DATABASE_{}'.format(k.upper()): v for k, v in settings.items()}
+    return {'DATABASE_{}'.format(k.upper()): v for k, v in list(settings.items())}
 
 
 class Database(Extension):
